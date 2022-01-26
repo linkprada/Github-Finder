@@ -1,6 +1,9 @@
+import UsersResult from "../components/users/UsersResult";
 
 function Home() {
-    return <div></div>;
+    return <div>
+        <UsersResult></UsersResult>
+    </div>;
 }
 
 export default Home;
