@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from "./components/layouts/Footer";
 import Navbar from "./components/layouts/Navbar";
-import { UsersContextProvider } from "./context/UsersContext";
+import { GithubContextProvider } from "./context/GithubContext";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 
 function App() {
     return (
-        <UsersContextProvider>
+        <GithubContextProvider>
             <Router>
                 <div className="flex flex-col justify-between h-screen">
                     <Navbar></Navbar>
@@ -23,7 +23,7 @@ function App() {
                     <Footer></Footer>
                 </div>
             </Router>
-        </UsersContextProvider>
+        </GithubContextProvider>
     );
 }
 
