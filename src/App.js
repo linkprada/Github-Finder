@@ -7,6 +7,7 @@ import { GithubContextProvider } from "./context/GithubContext";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import User from "./pages/User";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                             <Alert></Alert>
                             <Routes>
                                 <Route exact path="/" element={<Home></Home>}></Route>
+                                <Route exact path="/user/:login" element={<User></User>}></Route>
                                 <Route path="/about" element={<About></About>}></Route>
                                 <Route path="/notfound" element={<NotFound></NotFound>}></Route>
                                 <Route path="/*" element={<NotFound></NotFound>}></Route>

@@ -8,6 +8,7 @@ const GithubContext = createContext();
 export const GithubContextProvider = ({ children }) => {
     const initialState = {
         users: [],
+        user: {},
         loading: false,
     };
 
@@ -29,13 +30,37 @@ export const GithubContextProvider = ({ children }) => {
         });
     };
 
+    const getUser = async (login) => {
+        setLoading();
+
+        const response = await fetch(`${GITHUB_URL}/users/${login}`);
+
+        if (response.status === "404") {
+            window.location = "/notfound";
+        } else {
+            const data = await response.json();
+
+            dispatch({
+                type: "GET_USER",
+                payload: data,
+            });
+        }
+    };
+
     const clearUsers = () => dispatch({ type: "CLEAR_USERS" });
 
     const setLoading = () => dispatch({ type: "SET_LOADING" });
 
     return (
         <GithubContext.Provider
-            value={{ users: state.users, loading: state.loading, searchUsers, clearUsers }}
+            value={{
+                users: state.users,
+                user: state.user,
+                loading: state.loading,
+                searchUsers,
+                getUser,
+                clearUsers,
+            }}
         >
             {children}
         </GithubContext.Provider>
